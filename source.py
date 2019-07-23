@@ -1,10 +1,7 @@
 import functions
 
 def run():
-    inputVal = 0
-    file_write = functions.New_File("w+")
-    file_append = functions.New_File("a")
-    file_read = functions.New_File("r")
+    input_value = 0
     print("=====Welcome to File System=====")
 
     while(True):
@@ -18,20 +15,20 @@ def run():
 7- Press 7 to Exit.""")
 
         print("\nEnter your input: ")
-        inputVal = int(input())
+        input_value = int(input())
 
-        if inputVal == 1:
-            functions.Show_Content(file_read)
-        elif inputVal == 2:
-            functions.Append(file_append)
-        elif inputVal == 3:
-            functions.Overwrite(file_write)
-        elif inputVal == 4:
-            functions.Search_String(file_read)           
-        elif inputVal == 5:
-            functions.Replace_String(file_read)
-        # elif inputVal == 6:
-        #     functions.Delete_File(f)
+        if input_value == 1:
+            functions.ShowContent()
+        elif input_value == 2:
+            functions.Append()
+        elif input_value == 3:
+            functions.Overwrite()
+        elif input_value == 4:
+            functions.SearchString()           
+        elif input_value == 5:
+            functions.ReplaceString()
+        elif input_value == 6:
+            functions.DeleteFile()
         else:
             break
 

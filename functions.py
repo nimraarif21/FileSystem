@@ -1,45 +1,92 @@
 import os
 
 
-
-def New_File(mode):
-    file = open("test.txt", mode)
+def OpenOrCreate(filename, mode):
+    file = open(filename, mode)
     return file
 
 
-def Show_Content(file):
-    content = file.read()
-    print("Content of file :"+ content)
+def ShowContent():
+    print("Enter the name of the file  :  ", end="")
+    filename = input()
 
-def Overwrite(file):
-     print("Overwrite something  :  ", end="")
-     temp = input()
-     file.seek(0,0)
-     file.write(temp)
-     file.flush() 
+    try:
+        file = OpenOrCreate(filename, "r")
+        content = file.read()
+        print("Content of file :" + content)
+        file.close()
+    except:
+        print("No such file exists")
 
-def Append(file):
-    print("Append somethingg  :  ", end="")
-    temp = input()
-    file.write(temp)
-    file.flush()
+
+def Overwrite():
+    print("Enter the name of the file  :  ", end="")
+    filename = input()
+
+    try:
+        file = OpenOrCreate(filename, "w")
+        print("Overwrite something  :  ", end="")
+        temp = input()
+        file.write(temp)
+        file.close()
+    except:
+        print("No such file exists!!")
+
+
+def Append():
+    print("Enter the name of the file  :  ", end="")
+    filename = input()
+    
+    try:
+        file = OpenOrCreate(filename, "a")
+        print("Append somethingg  :  ", end="")
+        temp = input()
+        file.write(temp)
+        file.close()
+    except:
+        print("No such file exists!!")
     
 
-def Search_String(file):
-    print("Enter the string you want to search  :  ", end="")
-    inputVal = input()
-    readFile = file.read()
-    print(inputVal + " occurs "+ str(readFile.count(inputVal))+" times in the file")
+def SearchString():
+    print("Enter the name of the file  :  ", end="")
+    filename = input()
 
-def Replace_String(file):
+    try:
+        file = OpenOrCreate(filename, "r")
+        print("Enter the string you want to search  :  ", end="")
+        inputVal = input()
+        readFile = file.read()
+        print(inputVal + " occurs " + str(readFile.count(inputVal)) + " times in the file")
+        file.close()
+    except:
+        print("No such file exists!!")
+
+
+def ReplaceString():
+    print("Enter the name of the file  :  ", end="")
+    filename = input()
     print("Enter the string you want to replace  :  ", end="")
-    oldS = input()
+    old_string = input()
     print("Enter the new string  :  ", end="")
-    newS = input()
+    new_string = input()
 
-    readFile = file.read()
-    readFile.replace(oldS, newS)
+    try:
+        fileRead = OpenOrCreate(filename, "r")
+        readFile = fileRead.read()
+        fileRead.close()
+        readFile = readFile.replace(old_string, new_string)
+        fileWrite = OpenOrCreate(filename, "w")
+        fileWrite.write(readFile)
+        fileWrite.close()
+    except:
+        print("No such file exists!!")
 
 
-def Delete_File(file):
-    os.remove(file)
+def DeleteFile():
+    print("Enter the name of the file  :  ", end="")
+    filename = input()
+
+    try:
+        os.remove(filename)
+    except:
+        print("No such file exists!!")
